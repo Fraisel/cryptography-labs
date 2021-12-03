@@ -14,8 +14,17 @@ def rot_right(num, shift):
     return (num >> shift) | (num << 32 - shift)
 
 
+def str_to_binary_code(message):
+    if isinstance(message, str):
+        return bytearray(message, 'ascii')
+    elif isinstance(message, bytes):
+        return bytearray(message)
+    elif not isinstance(message, bytearray):
+        raise TypeError
+
+
 def sha256(message):
-    message = bytearray(message, 'ascii')
+    message = str_to_binary_code(message)
 
     length = len(message) * 8
 
@@ -106,5 +115,5 @@ if __name__ == '__main__':
     import hashlib
 
     m = hashlib.sha256()
-    m.update(bytes(text))
+    m.update(text.encode('utf-8'))
     print(m.hexdigest())

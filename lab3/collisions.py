@@ -13,7 +13,7 @@ def random_str(size=5, chars=string.printable):
 def main():
     kupyna = Kupyna(256)
     for hash_func in [sha256, kupyna.hash]:
-        for length in range(1, 6):
+        for length in range(1, 4):
             start = time.time()
             hashes = set()
             while True:
